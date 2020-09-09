@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-contact',
@@ -7,9 +8,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContactComponent implements OnInit {
 
-  constructor() { }
+  contactUrl:string = 'http://inspirecodeclub-001-site1.ftempurl.com/api/Contact/SendMessage';
+  httpOptions = {
+    headers: new HttpHeaders({  'Content-Type': 'application/json' }),
+    
+  };
+
+  constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
   }
 
+  onSubmit(data): void{
+    this.http.post(this.contactUrl, data, this.httpOptions)
+    .subscribe((result)=>{
+      console.warn('result', result)
+    })
+console.warn(data);
+  }
 }
