@@ -26,15 +26,15 @@
           <i class="far fa-envelope fa-3x"></i>
           <h3 class="font-weight-bold ml-4">Contact Us</h3>
         </div>
-        <form #contactPost="ngForm" (ngSubmit)="onSubmit(contactPost.value)" >
+        <form #contactPost="ngForm" (ngSubmit)="onSubmit()" >
           <div class="input">
-            <input type="text" name="username" ngModel placeholder="Your Name" />
+            <input type="text" name="name" [(ngModel)]='contact.name' placeholder="Your Name" />
           </div>
           <div class="input">
-            <input type="email" name="email" ngModel placeholder="Email Address" />
+            <input type="email" name="email" [(ngModel)]='contact.email' placeholder="Email Address" />
           </div>
           <div class="input">
-            <textarea rows="10" name="message" ngModel placeholder="Message" ></textarea>
+            <textarea rows="10" name="body" [(ngModel)]='contact.body' placeholder="Message" ></textarea>
           </div>
           <button type="submit" class="btn btn-block">Send Message</button>
         </form>

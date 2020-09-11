@@ -28,7 +28,7 @@ export class BlogArticleComponent implements OnInit {
   submitComment(): void {
     if (this.body.length === 0 || this.name.length === 0) {
       return;
-    }
+    } 
 
     const comment: CommentRequest = { name: this.name, body: this.body };
 

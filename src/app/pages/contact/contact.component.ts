@@ -1,3 +1,4 @@
+import { ContactService } from './../../services/contact.service';
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
@@ -7,23 +8,23 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   styleUrls: ['./contact.component.scss']
 })
 export class ContactComponent implements OnInit {
+  contact: any = {};
 
-  contactUrl:string = 'http://inspirecodeclub-001-site1.ftempurl.com/api/Contact/SendMessage';
-  httpOptions = {
-    headers: new HttpHeaders({  'Content-Type': 'application/json' }),
-    
-  };
-
-  constructor(private http: HttpClient) { }
+  constructor(private service: ContactService) { }
 
   ngOnInit(): void {
   }
 
-  onSubmit(data): void{
-    this.http.post(this.contactUrl, data, this.httpOptions)
-    .subscribe((result)=>{
-      console.warn('result', result)
-    })
-console.warn(data);
+  onSubmit(): void{
+      console.warn(this.contact);
+      this.service.postContact(this.contact).subscribe(next => {
+       console.warn('Message sent' + next);
+       this.contact.name = '';
+       this.contact.email = '';
+       this.contact.body = '';
+     }, error => {
+       console.warn('message failed to send');
+     });
+    // console.warn(this.contact);
   }
 }
