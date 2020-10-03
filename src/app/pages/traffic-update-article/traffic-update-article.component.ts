@@ -10,8 +10,8 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class TrafficUpdateArticleComponent implements OnInit {
   trafficUpdate: TrafficUpdate;
-  name = '';
-  body = '';
+  title = '';
+  content = '';
   articleId: number;
   constructor(
     private service: TrafficUpdateService,
@@ -28,11 +28,14 @@ export class TrafficUpdateArticleComponent implements OnInit {
   }
 
   submitComment(): void {
-    if (this.body.length === 0 || this.name.length === 0) {
+    if (this.content.length === 0 || this.title.length === 0) {
       return;
     }
 
-    const comment: CommentRequest = { name: this.name, body: this.body };
+    const comment: CommentRequest = {
+      title: this.title,
+      content: this.content,
+    };
 
     this.service
       .postComment(this.articleId, comment)
@@ -41,8 +44,8 @@ export class TrafficUpdateArticleComponent implements OnInit {
           newComment,
           ...this.trafficUpdate.comments,
         ];
-        this.body = '';
-        this.name = '';
+        this.content = '';
+        this.title = '';
       });
   }
 }

@@ -1,7 +1,7 @@
 class Comment {
   id: number;
-  name: string;
-  body: string;
+  title: string;
+  content: string;
   createdAt: Date;
 }
 

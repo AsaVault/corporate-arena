@@ -34,7 +34,7 @@ export class BlogService {
 
   postComment(id: number, data: CommentRequest): Observable<Comment> {
     return this.http.post<Comment>(
-      `${this.blogUrl}/${id}/comment`,
+      `${this.blogUrl}/CommentOnArticle`,
       data,
       this.httpOptions
     );

@@ -1,6 +1,7 @@
 class CommentRequest {
-  name: string;
-  body: string;
+  articleId: number;
+  title: string;
+  content: string;
 }
 
 export default CommentRequest;

@@ -10,8 +10,8 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class BlogArticleComponent implements OnInit {
   blog: Blog;
-  name = '';
-  body = '';
+  title = '';
+  content = '';
   articleId: number;
 
   constructor(private service: BlogService, private route: ActivatedRoute) {}
@@ -26,18 +26,22 @@ export class BlogArticleComponent implements OnInit {
   }
 
   submitComment(): void {
-    if (this.body.length === 0 || this.name.length === 0) {
+    if (this.content.length === 0 || this.title.length === 0) {
       return;
-    } 
+    }
 
-    const comment: CommentRequest = { name: this.name, body: this.body };
+    const comment: CommentRequest = {
+      title: this.title,
+      content: this.content,
+      articleId: this.articleId,
+    };
 
     this.service
       .postComment(this.articleId, comment)
       .subscribe((newComment) => {
-        this.blog.comments = [newComment, ...this.blog.comments];
-        this.body = '';
-        this.name = '';
+        // this.blog.comments = [newComment, ...this.blog.comments];
+        this.content = '';
+        this.title = '';
       });
   }
 }

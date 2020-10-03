@@ -31,7 +31,7 @@
 
       <span class="text-muted mt-4"
         ><i class="far fa-comment"></i>
-        {{ blog.comments.length > 0 ? blog.comments.length : "No" }}
+        {{ blog.comments?.length > 0 ? blog.comments.length : "No" }}
         comments</span
       >
     </div>
@@ -44,14 +44,14 @@
           <img class="img-fluid" src="/assets/mock_user_image.jpg" alt="" />
         </div>
         <div class="user">
-          <h4 class="font-weight-bold">{{ comment.name }}</h4>
+          <h4 class="font-weight-bold">{{ comment.title }}</h4>
           <span>... writes</span>
         </div>
       </div>
       <span class="time">{{ comment.createdAt | date: "fullDate" }}</span>
     </div>
     <p class="mt-3">
-      {{ comment.body }}
+      {{ comment.content }}
     </p>
   </div>
 
@@ -63,7 +63,7 @@
     />
     <form (ngSubmit)="submitComment()" class="col">
       <div class="input mb-3 w-75">
-        <input type="text" placeholder="Name" [(ngModel)]="name" name="name" />
+        <input type="text" placeholder="Name" [(ngModel)]="title" name="name" />
       </div>
       <div class="input w-75">
         <textarea
@@ -71,7 +71,7 @@
           id=""
           rows="7"
           placeholder="Comment"
-          [(ngModel)]="body"
+          [(ngModel)]="content"
         ></textarea>
       </div>
       <button type="submit" class="btn">Submit</button>
