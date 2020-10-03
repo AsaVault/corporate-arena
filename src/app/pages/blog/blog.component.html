@@ -4,7 +4,7 @@
   <div class="featured_blog d-md-flex d-sm-block" *ngIf="featuredBlog">
     <img src="/assets/jakande_traffic.jpg" alt="" class="img-fluid" />
     <div class="summary">
-      <a routerLink="{{ getUrl(featuredBlog.slug) }}" class="title"
+      <a routerLink="{{ getUrl(featuredBlog.id) }}" class="title"
         ><h2 class="font-weight-bold text-left">
           {{ featuredBlog.title }}
         </h2></a
@@ -78,10 +78,10 @@
                 fill="#B6BDFC"
               />
             </svg>
-            {{ blog.comments.length > 0 ? blog.comments.length : "No" }}
+            {{ blog.comments?.length > 0 ? blog.comments.length : "No" }}
             comments</span
           >
-          <a routerLink="{{ getUrl(blog.slug) }}"
+          <a routerLink="{{ getUrl(blog.id) }}"
             >Read Story
             <svg
               width="21"

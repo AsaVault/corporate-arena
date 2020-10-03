@@ -21,7 +21,7 @@ export class BlogService {
   }
 
   get(slug: string): Observable<Blog> {
-    return this.http.get<Blog>(`${this.blogUrl}/${slug}`);
+    return this.http.get<Blog>(`${this.blogUrl}/GetArticle/${slug}`);
   }
 
   postArticle(data: any): Observable<any> {
