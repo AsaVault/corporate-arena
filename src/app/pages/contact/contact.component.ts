@@ -19,9 +19,9 @@ export class ContactComponent implements OnInit {
       console.warn(this.contact);
       this.service.postContact(this.contact).subscribe(next => {
        console.warn('Message sent' + next);
-       this.contact.name = '';
+       this.contact.userName = '';
        this.contact.email = '';
-       this.contact.body = '';
+       this.contact.message = '';
      }, error => {
        console.warn('message failed to send');
      });

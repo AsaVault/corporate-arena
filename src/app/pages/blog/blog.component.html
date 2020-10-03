@@ -24,10 +24,10 @@
             fill="#7C98A6"
           />
         </svg>
-        <span>Posted on {{ featuredBlog.publishedAt | date: "fullDate" }}</span>
+        <span>Posted on {{ featuredBlog.dateCreated | date: "fullDate" }}</span>
       </div>
       <p>
-        {{ featuredBlog.body }}
+        {{ featuredBlog.content }}
       </p>
       <a routerLink="{{ getUrl(featuredBlog.slug) }}"
         >see more
@@ -55,12 +55,12 @@
     <div class="col-md-3 mb-3 col-sm-12" *ngFor="let blog of blogs">
       <div class="blog__card">
         <img src="/assets/jakande_traffic.jpg" alt="" />
-        <span>{{ blog.createdAt | date: "fullDate" }}</span>
+        <span>{{ blog.dateCreated | date: "longDate" }}</span>
         <h5 class="font-weight-bold">
           {{ blog.title }}
         </h5>
         <p>
-          {{ blog.body }}
+          {{ blog.content }}
         </p>
         <div class="blog__card__stats">
           <span

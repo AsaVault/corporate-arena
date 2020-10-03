@@ -28,13 +28,13 @@
         </div>
         <form #contactPost="ngForm" (ngSubmit)="onSubmit()" >
           <div class="input">
-            <input type="text" name="name" [(ngModel)]='contact.name' placeholder="Your Name" />
+            <input type="text" name="name" [(ngModel)]='contact.userName' placeholder="Your Name" />
           </div>
           <div class="input">
             <input type="email" name="email" [(ngModel)]='contact.email' placeholder="Email Address" />
           </div>
           <div class="input">
-            <textarea rows="10" name="body" [(ngModel)]='contact.body' placeholder="Message" ></textarea>
+            <textarea rows="10" name="body" [(ngModel)]='contact.message' placeholder="Message" ></textarea>
           </div>
           <button type="submit" class="btn btn-block">Send Message</button>
         </form>

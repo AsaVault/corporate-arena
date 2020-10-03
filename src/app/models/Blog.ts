@@ -3,9 +3,9 @@ class Blog {
   id: number;
   title: string;
   slug: string;
-  body: string;
+  content: string;
+  dateCreated: Date;
   publishedAt: Date;
-  createdAt: Date;
   comments: Comment[];
 }
 

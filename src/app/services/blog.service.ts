@@ -2,12 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Blog, Comment, CommentRequest } from '../models';
 import { Observable } from 'rxjs';
+import { ApiUrls } from '../app-config';
 
 @Injectable({
   providedIn: 'root',
 })
 export class BlogService {
-  blogUrl = 'https://localhost:44340/article';
+  private apiURL = ApiUrls.ApiURL;
+  blogUrl = `${this.apiURL}Article`;
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
   };
@@ -15,11 +17,19 @@ export class BlogService {
   constructor(private http: HttpClient) {}
 
   getAll(): Observable<Blog[]> {
-    return this.http.get<Blog[]>(this.blogUrl);
+    return this.http.get<Blog[]>(`${this.blogUrl}/GetAllArticles`);
   }
 
   get(slug: string): Observable<Blog> {
     return this.http.get<Blog>(`${this.blogUrl}/${slug}`);
+  }
+
+  postArticle(data: any): Observable<any> {
+    return this.http.post(
+      `${this.blogUrl}/CreateArticle`,
+      data,
+      this.httpOptions
+    );
   }
 
   postComment(id: number, data: CommentRequest): Observable<Comment> {

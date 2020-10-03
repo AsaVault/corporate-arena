@@ -16,6 +16,7 @@ export class BlogComponent implements OnInit {
   ngOnInit(): void {
     this.service.getAll().subscribe((blogs) => {
       this.featuredBlog = blogs[0];
+      console.log(this.featuredBlog);
       this.blogs = blogs.slice(1);
     });
   }
