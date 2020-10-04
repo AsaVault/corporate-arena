@@ -14,7 +14,7 @@ export class BlogService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
   };
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   getAll(): Observable<Blog[]> {
     return this.http.get<Blog[]>(`${this.blogUrl}/GetAllArticles`);
@@ -24,8 +24,8 @@ export class BlogService {
     return this.http.get<Blog>(`${this.blogUrl}/GetArticle/${slug}`);
   }
 
-  postArticle(data: any): Observable<any> {
-    return this.http.post(
+  postArticle(data: Blog): Observable<Blog> {
+    return this.http.post<Blog>(
       `${this.blogUrl}/CreateArticle`,
       data,
       this.httpOptions

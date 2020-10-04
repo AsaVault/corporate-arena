@@ -1,5 +1,6 @@
+import { BlogCreateComponent } from './pages/blog-create/blog-create.component';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, Component } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
@@ -30,6 +31,7 @@ import { VacanciesComponent } from './pages/vacancies/vacancies.component';
     TrafficUpdateArticleComponent,
     BlogComponent,
     BlogArticleComponent,
+    BlogCreateComponent,
     VacanciesComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],

@@ -12,6 +12,7 @@ export class BrainTeaserComponent implements OnInit {
   selectedBrainTeaser: number;
   name = '';
   body = '';
+  brainTeaserId;
   view = 'answer';
 
   constructor(private service: BrainTeaserService) {}
@@ -47,7 +48,11 @@ export class BrainTeaserComponent implements OnInit {
       return;
     }
 
-    const comment: CommentRequest = { name: this.name, body: this.body };
+    const comment: CommentRequest = {
+      title: this.name,
+      content: this.body,
+      articleId: this.brainTeaserId,
+    };
 
     this.service.postComment(id, comment).subscribe((newComment) => {
       this.brainTeasers[id].comments = [
