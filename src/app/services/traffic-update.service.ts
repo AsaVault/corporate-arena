@@ -2,28 +2,38 @@ import { Injectable } from '@angular/core';
 import { TrafficUpdate, Comment, CommentRequest } from '../models';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { ApiUrls } from '../app-config';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TrafficUpdateService {
-  trafficUpdateUrl = 'https://localhost:44340/trafficupdate';
+  private apiURL = ApiUrls.ApiURL;
+  trafficUpdateUrl = `${this.apiURL}TrafficUpdate`;
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
   };
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   getAll(): Observable<TrafficUpdate[]> {
     return this.http.get<TrafficUpdate[]>(this.trafficUpdateUrl);
   }
 
   getBySlug(slug: string): Observable<TrafficUpdate> {
-    return this.http.get<TrafficUpdate>(`${this.trafficUpdateUrl}/${slug}`);
+    return this.http.get<TrafficUpdate>(`${this.trafficUpdateUrl}/GetTrafficUpdate/${slug}`);
+  }
+
+  postTrafficUpdate(data: TrafficUpdate): Observable<TrafficUpdate> {
+    return this.http.post<TrafficUpdate>(
+      `${this.trafficUpdateUrl}/SaveTrafficUpdate`,
+      data,
+      this.httpOptions
+    );
   }
 
   postComment(id: number, data: CommentRequest): Observable<Comment> {
     return this.http.post<Comment>(
-      `${this.trafficUpdateUrl}/${id}/comment`,
+      `${this.trafficUpdateUrl}/CommentOnTrafficUpdate`,
       data,
       this.httpOptions
     );
