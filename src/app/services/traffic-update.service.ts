@@ -1,3 +1,4 @@
+import { CommentRequestTrafficUpdate } from './../models/CommentRequestTrafficUpdate';
 import { Injectable } from '@angular/core';
 import { TrafficUpdate, Comment, CommentRequest } from '../models';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -31,8 +32,8 @@ export class TrafficUpdateService {
     );
   }
 
-  postComment(data: CommentRequest): Observable<Comment> {
-    return this.http.post<Comment>(
+  postComment(data: CommentRequestTrafficUpdate): Observable<CommentRequestTrafficUpdate> {
+    return this.http.post<CommentRequestTrafficUpdate>(
       `${this.trafficUpdateUrl}/CommentOnTrafficUpdate`,
       data,
       this.httpOptions

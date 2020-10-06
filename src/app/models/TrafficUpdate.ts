@@ -1,3 +1,4 @@
+import { CommentRequestTrafficUpdate } from './CommentRequestTrafficUpdate';
 import { Comment } from '.';
 
 type TrafficUpdate = {
@@ -6,7 +7,7 @@ type TrafficUpdate = {
   description: string;
   slug: string;
   dateCreated: Date;
-  comments: Comment[];
+  trafficUpdateComments: CommentRequestTrafficUpdate[];
 };
 
 export default TrafficUpdate;

@@ -19,11 +19,11 @@
       </p>
 
       <span class="text-muted mt-4"><i class="far fa-comment"></i>
-        {{ trafficUpdate.comments?.length }} comments</span>
+        {{ trafficUpdate.trafficUpdateComments?.length }} comments</span>
     </div>
   </div>
 
-  <div class="answer-card mb-4 mt-5" *ngFor="let comment of trafficUpdate.comments">
+  <div class="answer-card mb-4 mt-5" *ngFor="let comment of trafficUpdate.trafficUpdateComments">
     <div class="d-flex align-items-center justify-content-between">
       <div class="d-flex">
         <div class="user-image mr-3">

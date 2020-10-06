@@ -26,7 +26,7 @@ export class TrafficUpdateCreateComponent implements OnInit {
       description: this.content,
       slug: 'nothing',
       id: 0,
-      comments: null,
+      trafficUpdateComments: null,
       dateCreated: new Date(),
     };
     this.service

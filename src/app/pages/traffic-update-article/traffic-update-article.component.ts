@@ -35,16 +35,17 @@ export class TrafficUpdateArticleComponent implements OnInit {
 
     const comment: CommentRequestTrafficUpdate = {
       title: this.name,
-      content: this.body,
+      comment: this.body,
       trafficUpdateId: this.articleId,
+      dateCreated: new Date()
     };
 
     this.service
       .postComment(comment)
       .subscribe((newComment) => {
-        this.trafficUpdate.comments = [
+        this.trafficUpdate.trafficUpdateComments = [
           newComment,
-          ...this.trafficUpdate.comments,
+          ...this.trafficUpdate.trafficUpdateComments,
         ];
         this.body = '';
         this.name = '';
