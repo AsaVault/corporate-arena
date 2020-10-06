@@ -39,7 +39,7 @@ export class TrafficUpdateArticleComponent implements OnInit {
     };
 
     this.service
-      .postComment(this.articleId, comment)
+      .postComment(comment)
       .subscribe((newComment) => {
         this.trafficUpdate.comments = [
           newComment,

@@ -10,7 +10,7 @@ import { TrafficUpdate } from '../../models/';
 export class TrafficUpdateComponent implements OnInit {
   trafficUpdates: TrafficUpdate[];
 
-  constructor(private service: TrafficUpdateService) {}
+  constructor(private service: TrafficUpdateService) { }
 
   ngOnInit(): void {
     this.service.getAll().subscribe((trafficUpdates) => {
@@ -20,6 +20,6 @@ export class TrafficUpdateComponent implements OnInit {
   }
 
   getUrl(slug: string): string {
-    return `/traffic_updates/${slug}`;
+    return `/GetTrafficUpdate/${slug}`;
   }
 }

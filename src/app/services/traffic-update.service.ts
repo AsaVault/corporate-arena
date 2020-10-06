@@ -31,7 +31,7 @@ export class TrafficUpdateService {
     );
   }
 
-  postComment(id: number, data: CommentRequest): Observable<Comment> {
+  postComment(data: CommentRequest): Observable<Comment> {
     return this.http.post<Comment>(
       `${this.trafficUpdateUrl}/CommentOnTrafficUpdate`,
       data,
