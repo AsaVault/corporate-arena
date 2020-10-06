@@ -17,6 +17,7 @@ import { TrafficUpdateArticleComponent } from './pages/traffic-update-article/tr
 import { BlogComponent } from './pages/blog/blog.component';
 import { BlogArticleComponent } from './pages/blog-article/blog-article.component';
 import { VacanciesComponent } from './pages/vacancies/vacancies.component';
+import { TrafficUpdateCreateComponent } from './pages/traffic-update-create/traffic-update-create.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { VacanciesComponent } from './pages/vacancies/vacancies.component';
     NewsletterComponent,
     TrafficUpdateComponent,
     TrafficUpdateArticleComponent,
+    TrafficUpdateCreateComponent,
     BlogComponent,
     BlogArticleComponent,
     BlogCreateComponent,
@@ -38,4 +40,4 @@ import { VacanciesComponent } from './pages/vacancies/vacancies.component';
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

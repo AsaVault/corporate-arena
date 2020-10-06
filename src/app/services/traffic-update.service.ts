@@ -16,7 +16,7 @@ export class TrafficUpdateService {
   constructor(private http: HttpClient) { }
 
   getAll(): Observable<TrafficUpdate[]> {
-    return this.http.get<TrafficUpdate[]>(this.trafficUpdateUrl);
+    return this.http.get<TrafficUpdate[]>(`${this.trafficUpdateUrl}/GetAllTrafficUpdates`);
   }
 
   getBySlug(slug: string): Observable<TrafficUpdate> {
