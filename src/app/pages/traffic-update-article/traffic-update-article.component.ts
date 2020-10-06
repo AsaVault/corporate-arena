@@ -1,3 +1,4 @@
+import { CommentRequestTrafficUpdate } from './../../models/CommentRequestTrafficUpdate';
 import { Component, OnInit } from '@angular/core';
 import { TrafficUpdate, Comment, CommentRequest } from 'src/app/models';
 import { TrafficUpdateService } from 'src/app/services/traffic-update.service';
@@ -32,10 +33,10 @@ export class TrafficUpdateArticleComponent implements OnInit {
       return;
     }
 
-    const comment: CommentRequest = {
+    const comment: CommentRequestTrafficUpdate = {
       title: this.name,
       content: this.body,
-      articleId: this.articleId,
+      trafficUpdateId: this.articleId,
     };
 
     this.service
