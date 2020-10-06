@@ -3,9 +3,9 @@ import { Comment } from '.';
 type TrafficUpdate = {
   id: number;
   title: string;
-  body: string;
+  description: string;
   slug: string;
-  createdAt: string;
+  dateCreated: Date;
   comments: Comment[];
 };
 
