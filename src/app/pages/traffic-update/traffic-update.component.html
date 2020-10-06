@@ -1,6 +1,8 @@
 <div class="container my-5 mx-auto">
   <h2 class="font-weight-bold text-center mb-5">Traffic Updates</h2>
-
+  <a routerLink="/traffic-update-create" class="title">
+    <h2 class=" text-left link">Create New</h2>
+  </a>
   <div class="d-flex flex-sm-column flex-md-row mb-5" *ngFor="let trafficUpdate of trafficUpdates">
     <img src="/assets/traffic-jam.jpg" alt="" class="img-fluid mr-3" />
     <div class="align-self-center">

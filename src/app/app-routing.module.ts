@@ -1,3 +1,4 @@
+import { TrafficUpdateCreateComponent } from './pages/traffic-update-create/traffic-update-create.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
@@ -20,10 +21,11 @@ const routes: Routes = [
   { path: 'blog/:id', component: BlogArticleComponent },
   { path: 'traffic_updates', component: TrafficUpdateComponent },
   { path: 'traffic_updates/:id', component: TrafficUpdateArticleComponent },
+  { path: 'traffic-update-create', component: TrafficUpdateCreateComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
