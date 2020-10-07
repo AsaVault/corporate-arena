@@ -34,6 +34,7 @@ export class TrafficUpdateArticleComponent implements OnInit {
     }
 
     const comment: CommentRequestTrafficUpdate = {
+      id: 0,
       title: this.name,
       comment: this.body,
       trafficUpdateId: this.articleId,
