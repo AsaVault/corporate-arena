@@ -57,9 +57,10 @@ export class BrainTeaserComponent implements OnInit {
       id: 0,
       dateCreated: new Date(),
       userCreated: 1,
+      userName: this.name,
       answer: this.body,
       isApproved: false,
-      brainTeaserID: this.brainTeaserId,
+      brainTeaserID: id,
     };
 
     this.service.postAnswer(id, answer).subscribe((newComment) => {
