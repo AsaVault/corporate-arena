@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BrainTeaser, CommentRequest } from 'src/app/models';
+import { BrainTeaserAnswer } from 'src/app/models/BrainTeaserAnswer';
 import { BrainTeaserService } from '../../services/brain-teaser.service';
 
 @Component({
@@ -15,7 +16,7 @@ export class BrainTeaserComponent implements OnInit {
   brainTeaserId;
   view = 'answer';
 
-  constructor(private service: BrainTeaserService) {}
+  constructor(private service: BrainTeaserService) { }
 
   ngOnInit(): void {
     this.service.getAll().subscribe((brainTeasers) => {
@@ -43,28 +44,39 @@ export class BrainTeaserComponent implements OnInit {
     this.selectedBrainTeaser = null;
   }
 
-  submitComment(id: number): void {
+  isSelected(id: number): boolean {
+    return id === this.selectedBrainTeaser;
+  }
+
+  submitAnswer(id: number): void {
     if (this.body.length === 0 || this.name.length === 0) {
       return;
     }
 
-    const comment: CommentRequest = {
-      title: this.name,
-      content: this.body,
-      articleId: this.brainTeaserId,
+    const answer: BrainTeaserAnswer = {
+      id: 0,
+      dateCreated: new Date(),
+      userCreated: 1,
+      answer: this.body,
+      isApproved: false,
+      brainTeaserID: this.brainTeaserId,
     };
 
-    this.service.postComment(id, comment).subscribe((newComment) => {
-      this.brainTeasers[id].comments = [
+    this.service.postAnswer(id, answer).subscribe((newComment) => {
+      this.brainTeasers[id].brainTeaserAnswers = [
         newComment,
-        ...this.brainTeasers[id].comments,
+        ...this.brainTeasers[id].brainTeaserAnswers,
       ];
       this.body = '';
       this.name = '';
     });
   }
 
-  isSelected(id: number): boolean {
-    return id === this.selectedBrainTeaser;
+  getUrl(slug: string): string {
+    return `/brain-teaser/${slug}`;
+  }
+
+  getWithAnswerUrl(slug: string): string {
+    return `/brain-teaser-admin/${slug}`;
   }
 }
