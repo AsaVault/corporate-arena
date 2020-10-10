@@ -1,4 +1,4 @@
 export class BrainTeaserRequest {
-    // userId: number;
-    // brainTeaserID: number;
+    userId: number;
+    brainTeaserID: number;
 }
