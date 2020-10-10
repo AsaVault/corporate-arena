@@ -1,10 +1,18 @@
-import { Comment } from './';
+import { BrainTeaserWinner } from './BrainTeaserWinner';
+import { BrainTeaserAnswer } from './BrainTeaserAnswer';
 
 class BrainTeaser {
   id: number;
   riddle: string;
-  createdAt: Date;
-  comments: Comment[];
+  brainTeaserAnswers: BrainTeaserAnswer[];
+  brainTeaserWinners: BrainTeaserWinner[];
+  userCreated: number;
+  dateCreated: Date;
+  dateModified: Date;
+  correctAnswer: string;
+  gift: string;
+  isApproved: boolean;
+  isDeleted: boolean;
 }
 
 export default BrainTeaser;
