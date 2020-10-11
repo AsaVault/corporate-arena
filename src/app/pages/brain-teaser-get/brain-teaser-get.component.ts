@@ -1,3 +1,4 @@
+import { BrainTeaserRequest } from './../../models/BrainTeaserRequest';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BrainTeaser } from 'src/app/models';
@@ -14,41 +15,82 @@ export class BrainTeaserGetComponent implements OnInit {
   name = '';
   body = '';
   brainTeaserId;
+  selectedBrainTeaser: number;
+  view = 'answer';
+  userId = 1;
+  isApproved = false;
+  isDisplayed = false;
   constructor(private service: BrainTeaserService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.service
-      .get(this.route.snapshot.paramMap.get('id'))
+      .getWithAnswer(this.route.snapshot.paramMap.get('id'))
       .subscribe((brainTeaser) => {
         this.brainTeaser = brainTeaser;
+        console.log(this.brainTeaser);
         this.brainTeaserId = brainTeaser.id;
       });
   }
 
-  submitAnswer(id: number): void {
-    if (this.body.length === 0 || this.name.length === 0) {
-      return;
-    }
-
-    const answer: BrainTeaserAnswer = {
-      id: 0,
-      dateCreated: new Date(),
-      userCreated: 1,
-      userName: this.name,
-      answer: this.body,
-      isApproved: false,
-      brainTeaserID: this.brainTeaserId,
-    };
-
-    this.service.postAnswer(id, answer).subscribe((newAnswer) => {
-      this.brainTeaser[id].brainTeaserAnswers = [
-        newAnswer,
-        ...this.brainTeaser[id].brainTeaserAnswers,
-      ];
-      this.body = '';
-      this.name = '';
-    });
+  refreshPage(): void {
+    this.service
+      .getWithAnswer(this.route.snapshot.paramMap.get('id'))
+      .subscribe((brainTeaser) => {
+        this.brainTeaser = brainTeaser;
+        console.log(this.brainTeaser);
+        this.brainTeaserId = brainTeaser.id;
+      });
   }
 
+  toggleView(view: string): void {
+    this.view = view;
+  }
 
+  toggleSelected(selected: number = null): void {
+    if (selected) {
+      if (this.isSelected(selected)) {
+        return;
+      }
+
+      this.selectedBrainTeaser = selected;
+      console.log(selected);
+      return;
+    }
+    this.selectedBrainTeaser = null;
+  }
+
+  isSelected(id: number): boolean {
+    return id === this.selectedBrainTeaser;
+  }
+
+  approveAnswer(id: number): void {
+    const approve: BrainTeaserRequest = {
+      userId: this.userId,
+      brainTeaserID: id
+    };
+    console.log(id);
+    this.service.approveAnswer(approve).subscribe((response) => {
+
+    });
+    this.isApproved = true;
+    this.refreshPage();
+    window.location.reload();
+  }
+
+  toggleDisplayWinner(id: number): void {
+    const winner: BrainTeaserRequest = {
+      userId: this.userId,
+      brainTeaserID: id
+    };
+    console.log(id);
+    this.service.displayWinner(winner).subscribe((response) => {
+
+    });
+    this.isDisplayed = true;
+    this.refreshPage();
+    window.location.reload();
+  }
+  getUrl(slug: number): string {
+    return `/brain-teaser/${slug}`;
+  }
 }

@@ -14,7 +14,8 @@ export class BrainTeaserComponent implements OnInit {
   name = '';
   body = '';
   brainTeaserId;
-  view = 'answer';
+  view = '';
+  isSubmitted: boolean;
 
   constructor(private service: BrainTeaserService) { }
 
@@ -64,12 +65,13 @@ export class BrainTeaserComponent implements OnInit {
     };
 
     this.service.postAnswer(id, answer).subscribe((newComment) => {
-      this.brainTeasers[id].brainTeaserAnswers = [
-        newComment,
-        ...this.brainTeasers[id].brainTeaserAnswers,
-      ];
+      // this.brainTeasers[id].brainTeaserAnswers = [
+      //   newComment,
+      //   ...this.brainTeasers[id].brainTeaserAnswers,
+      // ];
       this.body = '';
       this.name = '';
+      this.isSubmitted = true;
     });
   }
 
